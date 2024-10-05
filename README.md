@@ -50,9 +50,16 @@ To get historical share price data:
 
 ```
 apple_share_price_data = apple.history(period="max")
+apple_share_price_data.head()
+```
+![Apple Share Price](images/1-appleshareprice.png)
+
+Then to reset the index of the table:
+```
 apple_share_price_data.reset_index(inplace=True)
 print(apple_share_price_data.head())
 ```
+![Apple Share Price with a reset index](images/2-appleshareprice.png)
 
 ## Plotting Share Prices
 You can visualize the Open prices using:
@@ -61,6 +68,8 @@ You can visualize the Open prices using:
 apple_share_price_data.plot(x="Date", y="Open")
 plt.show()
 ```
+![Apple Share Price Plot](images/3-applesharepriceplot.png)
+
 
 ## Extracting Dividends
 To get dividend data:
@@ -69,6 +78,7 @@ To get dividend data:
 apple_dividends = apple.dividends
 print(apple_dividends)
 ```
+![Apple Dividends](images/4-appledividends.png)
 
 ## Plotting Dividends
 Visualize dividends over time:
@@ -77,6 +87,7 @@ Visualize dividends over time:
 apple.dividends.plot()
 plt.show()
 ```
+![Apple Dividends Plot](images/5-appledividendsplot.png)
 
 ## Exercises
 ### Create a Ticker object for AMD (Advanced Micro Devices):
@@ -94,10 +105,26 @@ print("Sector:", amd_info['sector'])    # 'Technology'
 ```
 
 ### Retrieve the historical stock data and find the volume traded on the first day:
-
+You could run this code to show you the row that shows the 1st day of trading
 ```
-amd_history = amd.history(period="max")
-first_day_volume = amd_history.head(1)['Volume']
+x=amd.history(period = "max")
+x.head(1)
+```
+![Amd 1st row of Trading History](images/6-amdhistory.png)
+
+Alternatively, you could run this code to show you the 1st ten rows of trading
+```
+x=amd.history(period = "max")
+x.head(1)
+```
+![Amd 10 rows of Trading History](images/7-amdhistory.png)
+
+Also, you could specifcally determine the volume of the 1st day by calling it directly
+```
+x=amd.history(period = "max")
+first_day_volume = x.head(1)['Volume']
 print("Volume on first day:", first_day_volume)
 ```
+
+![Amd calling the volume directly](images/8-amdhistory.png)
 
